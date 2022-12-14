@@ -4,8 +4,8 @@ const Footer = () => {
     return (
         <footer className="footer py-4">
             <div className="text-center">
-                <a className="p-2" href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="img/facebook.png" alt="facebook" width={"30px"}/></a>
-                <a className="p-2" href="https://www.instagram.com/" target="_blank" rel="noreferrer"><img src="img/instagram.png" alt="instagram" width={"30px"}/></a>
+                <a className="p-2" href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src="/img/facebook.png" alt="facebook" width={"30px"}/></a>
+                <a className="p-2" href="https://www.instagram.com/" target="_blank" rel="noreferrer"><img src="/img/instagram.png" alt="instagram" width={"30px"}/></a>
             </div>
             <nav className="text-center">
                 <ul className="navbar-nav d-inline-block">

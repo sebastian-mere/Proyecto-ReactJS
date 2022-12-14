@@ -1,5 +1,6 @@
-import React from 'react'
-import CartWidget from './CartWidget'
+import React from 'react';
+import {Link, NavLink} from "react-router-dom";
+import CartWidget from './CartWidget';
 
 const NavBar = () => {
 	return (
@@ -8,7 +9,7 @@ const NavBar = () => {
 				<div className="col-md-12">
 					<nav className="navbar navbar-expand-lg">
 						<div className="container-fluid">
-							<a className="navbar-brand" href="index.html"><img src={"img/logo.jpg"} alt={"Logo JP Custom"} srcset="" /></a>
+							<Link className="navbar-brand" to={"/"}><img src={"/img/logo.jpg"} alt={"Logo JP Custom"} srcset="" /></Link>
 							<div className='d-flex justify-content-lg-between flex-lg-row-reverse'  >
 								<div className='p-2'>
 									<CartWidget />
@@ -20,16 +21,16 @@ const NavBar = () => {
 									<div className="collapse navbar-collapse" id="navbarNav">
 										<ul className="navbar-nav">
 											<li className="nav-item">
-												<a className="nav-link active" aria-current="page" href="/home">Home</a>
+												<NavLink className="nav-link active" aria-current="page" to={"/"}>Home</NavLink>
 											</li>
 											<li className="nav-item">
-												<a className="nav-link" href="/miniaturas">Miniaturas</a>
+												<NavLink className="nav-link" to={"/category/micro-vintage"}>Micro Vintage</NavLink>
 											</li>
 											<li className="nav-item">
-												<a className="nav-link" href="/cuadros">Cuadros</a>
+												<NavLink className="nav-link" to={"/category/cuadros"}>Cuadros</NavLink>
 											</li>
 											<li className="nav-item">
-												<a className="nav-link" href="/llaveros">Llaveros</a>
+												<NavLink className="nav-link" to={"/category/llaveros"}>Llaveros</NavLink>
 											</li>
 										</ul>
 									</div>
