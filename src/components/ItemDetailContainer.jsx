@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
-import arrayProductos from "./json/arrayProductos.json"
+import { doc, getDoc, getFirestore } from "firebase/firestore"
 
 const ItemDetailContainer = () => {
 
@@ -10,16 +10,18 @@ const ItemDetailContainer = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        const promise = new Promise((resolve) => {
-                setTimeout(() => {
-                resolve(arrayProductos.find(item => item.id === parseInt(id)))
-                }, 2000)
-            })
-        
-            promise.then((data) => {
-                setItem(data)
-            })
-    }, [id])
+      const db = getFirestore();
+
+      const documento = doc(db, "items", id)
+      getDoc(documento).then((snapShot) => {
+        if (snapShot.exists()){
+          setItem({id:snapShot.id, ...snapShot.data() })
+        } else {
+          console.log("error")
+        }
+      })
+
+    }, [id]);
 
   return (
     <div className="container">

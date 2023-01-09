@@ -9,7 +9,7 @@ const NavBar = () => {
 				<div className="col-md-12">
 					<nav className="navbar navbar-expand-lg">
 						<div className="container-fluid">
-							<Link className="navbar-brand" to={"/"}><img src={"/img/logo.jpg"} alt={"Logo JP Custom"} srcset="" /></Link>
+							<Link className="navbar-brand" to={"/"}><img src={"/img/logo.jpg"} alt={"Logo JP Custom"} srcSet="" /></Link>
 							<div className='d-flex justify-content-lg-between flex-lg-row-reverse'  >
 								<div className='p-2'>
 									<CartWidget />
