@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Cart = () => {
 
-    const {cart, removeItem} = useContext(CartContext)
+    const {cart, removeItem, clear, priceTotal} = useContext(CartContext)
 
     return (
     <div className='container py-5'>
@@ -13,11 +13,14 @@ const Cart = () => {
                 <table className="table">
                     <thead>
                         <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Producto</th>
-                        <th scope="col" className='text-center'>Cantidad</th>
-                        <th scope="col" className='text-center'>Precio</th>
-                        <th scope="col"></th>
+                            <th scope="col" className='text-end' colSpan={5}><Link onClick={clear} className="btn btn-primary cart text-end" title="Vaciar carrito">Vaciar carrito</Link></th>
+                        </tr>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Producto</th>
+                            <th scope="col" className='text-center'>Cantidad</th>
+                            <th scope="col" className='text-center'>Precio</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,9 +30,15 @@ const Cart = () => {
                                 <td className='align-middle'>{item.nombre}</td>
                                 <td className='text-center align-middle'>{item.cantidad}</td>
                                 <td className='text-center align-middle'>${item.cantidad * item.precio}</td>
-                                <td className='text-end align-middle'><Link onClick={() => {removeItem(item.id)}}><img src={"img/trash3.svg"} alt={"Eliminar"} width={24}/></Link></td>
+                                <td className='text-end align-middle'><Link onClick={() => {removeItem(item.id)}} title="Eliminar item"><img src={"img/trash3.svg"} alt={"Eliminar"} width={24}/></Link></td>
                             </tr>
                         ))}
+                        <tr>
+                            <td colSpan={2}></td>
+                            <td className='text-center align-middle'><b>Suma Total</b></td>
+                            <td className='text-center align-middle'><b>${priceTotal()}</b></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
