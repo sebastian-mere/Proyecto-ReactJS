@@ -4,7 +4,20 @@ import { Link } from 'react-router-dom'
 
 const Cart = () => {
 
-    const {cart, removeItem, clear, priceTotal} = useContext(CartContext)
+    const {cart, removeItem, clear, priceTotal, cartTotal} = useContext(CartContext)
+
+    if (cartTotal() === 0) {
+        return (
+            <div className='container py-5'>
+                <div className="row justify-content-md-center">
+                    <div className="col col-lg-8 text-center">
+                       <p>No se encontraron productos</p>
+                       <Link to={"/"} className="btn btn-primary cart">Volver al inicio</Link>
+                    </div>
+                </div>
+            </div>
+        )       
+    }
 
     return (
     <div className='container py-5'>
@@ -37,7 +50,7 @@ const Cart = () => {
                             <td colSpan={2}></td>
                             <td className='text-center align-middle'><b>Suma Total</b></td>
                             <td className='text-center align-middle'><b>${priceTotal()}</b></td>
-                            <td></td>
+                            <td className='text-end align-middle'><Link to={"/checkout"} className="btn btn-primary cart text-end" title="Finalizar compra">Finalizar compra</Link></td>
                         </tr>
                     </tbody>
                 </table>
