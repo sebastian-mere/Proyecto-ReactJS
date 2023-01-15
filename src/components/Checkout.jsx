@@ -60,7 +60,6 @@ const Checkout = () => {
         }
     }
 
-   
 
     return (
         <div className="container">
