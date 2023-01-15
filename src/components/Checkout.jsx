@@ -11,8 +11,39 @@ const Checkout = () => {
     const [telefono, setTelefono] = useState("")
     const [orderId, setOrderId] = useState("")
 
+    const [errors, setErrors] = useState({nombre: "", email: "", provincia: "", telefono: ""})
+
+    const validate = () => {
+        let newErrors = {nombre: "", email: "", provincia: "", telefono: ""}
+
+        if (!nombre) {
+            newErrors.nombre = "El nombre es obligatorio"
+        }
+
+        if (!email) {
+            newErrors.email = "El email es obligatorio"
+        } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            newErrors.email = "El email no es válido"
+        }
+
+        if (!provincia) {
+            newErrors.provincia = "La provincia es obligatoria"
+        }
+
+        if (!telefono) {
+            newErrors.telefono = "El teléfono es obligatorio"
+        } else if (!/^\d{10,}$/.test(telefono)) {
+            newErrors.telefono = "El teléfono debe tener 10 dígitos"
+        }
+
+        setErrors(newErrors)
+
+        return Object.values(newErrors).every(err => !err)
+    }
+
     const generarOrden = () => {
-        const fecha = new Date()
+        if (validate()) {
+            const fecha = new Date()
         const order = {
             date: fecha,
             buyer: {name:nombre, email:email, state:provincia, phone:telefono},
@@ -26,7 +57,10 @@ const Checkout = () => {
             setOrderId(snapshot.id)
             clear()
         })
+        }
     }
+
+   
 
     return (
         <div className="container">
@@ -55,13 +89,13 @@ const Checkout = () => {
                             <div className="col">
                                 <input type="text" className="form-control" placeholder="Nombre" id="nombre" onInput={(e) => {setNombre(e.target.value)}}/>
                             </div>
-                            <div className="text-warning small" id="msgNombre"></div>
+                            <div className="text-warning small">{errors.nombre}</div>
                         </div>
                         <div className="form-group row py-2">
                             <div className="col">
                                 <input type="email" className="form-control" placeholder="Email" id="email" onInput={(e) => {setEmail(e.target.value)}}/>
                             </div>
-                            <div className="text-warning small" id="msgEmail"></div>
+                            <div className="text-warning small">{errors.email}</div>
                         </div>
                         <div className="form-group row py-2">
                             <div className="col">
@@ -93,13 +127,13 @@ const Checkout = () => {
                                     <option value="tucuman">Tucuman</option>
                                 </select>
                             </div>
-                            <div className="text-warning small" id="msgProvincia"></div>
+                            <div className="text-warning small">{errors.provincia}</div>
                         </div>
                         <div className="form-group row py-2">
                             <div className="col">
                                 <input type="number" className="form-control" placeholder="Teléfono" id="telefono" onInput={(e) => {setTelefono(e.target.value)}}/>
                             </div>
-                            <div className="text-warning small" id="telefono"></div>
+                            <div className="text-warning small">{errors.telefono}</div>
                         </div>
                         <div className="col py-4">
                             <button type="button" className="btn btn-lg cart w-100" onClick={generarOrden}>Generar orden</button>
