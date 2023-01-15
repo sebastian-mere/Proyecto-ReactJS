@@ -1,5 +1,6 @@
 import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import React, { useContext, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { CartContext } from './context/CartContext'
 
 const Checkout = () => {
@@ -141,7 +142,7 @@ const Checkout = () => {
                 </div>
             </div>
             <div className="row my-5">
-                {orderId ? <p>Tu numero de orden es: {orderId}</p> : ""}
+                {orderId ? <Navigate to={"/thankyou/" + orderId} /> : ""}
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ import Hero from "./components/Hero";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
+import ThankYou from "./components/ThankYou";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path={"/item/:id"} element={<ItemDetailContainer />} />
             <Route path={"/cart"} element={<Cart />} />
             <Route path={"/checkout"} element={<Checkout />} />
+            <Route path={"/thankyou/:id"} element={<ThankYou />} />
             <Route path={"*"} element={<Error404 />} />
           </Routes>
           <Footer />
